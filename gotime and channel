@@ -10,17 +10,17 @@ func f(){
 
 func main() {
 	go f()
-	c <-0//    close(c)
+	c <-0//    close(c),信道在接收到零值后将会关闭
 }
 
 
 ----------------------------------------------------
 var a string
-var c = make(chan int, 10)
+var c = make(chan int, 10) //带缓冲
 
 func f(){
 	a ="hello, word"
-	c<-0 // close(c)
+	c<-0 // close(c) //已经存入缓冲了，可以直接关闭此信道，信道在接收到零值后将会关闭
 }
 
 func main(){

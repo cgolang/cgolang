@@ -10,7 +10,7 @@ func f(){
 
 func main() {
 	go f()
-	c <-0//清空C的缓冲区 
+	c <-0//    close(c)
 }
 
 
@@ -20,11 +20,11 @@ var c = make(chan int, 10)
 
 func f(){
 	a ="hello, word"
-	c<-0 //先清空缓冲区
+	c<-0 // close(c)
 }
 
 func main(){
 	go f()
-	<-c //取出C中数据
+	<-c //
 	print(a)
 }

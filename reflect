@@ -63,7 +63,12 @@ r = tty
 尽管接口值仅仅提供了访问 Read 方法的可能，但是内部包含了这个值的完整的类型信息。这也就是为什么可以这样做：
 
 var w io.Writer
-w = r.(io.Writer) 
+
+w ，ok = r.(io.Writer) // test whether r implements "io.Writer.Read()"  
+
+r.(io.Writer) 类型断言：判断r 的类型 是不是满足 io.writer 接口，如果满足，w将对应转换后的
+ io.Writer 类型
+
 在这个赋值中的断言是一个类型断言：它断言了 r 内部的条目同时也实现了 io.Writer，
 因此可以赋值它到 w。在赋值之后，w 将会包含 (tty, *os.File)。
 跟在 r 中保存的一致。接口的静态类型决定了哪个方法可以通过接口变量调用，

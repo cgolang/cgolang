@@ -29,7 +29,7 @@ Mutex 是同步基元，它只向一个线程授予对共享资源的独占访�
           go f(); //此时的 unlock 还没有被调用
           l.Lock();// 开始调用 Lock, 
                    // 在 LOCK 返回之前调用Unlock     
-          print(a);// 在锁上之前，调用了。(golang 每行函数，非阻塞执行的)
+          print(a);// 在锁上之前，调用了。(golang 没锁的时候，每行函数，非阻塞执行的)
   }
 可以确保输出“hello, world”结果。因为，
 第一次 l.Unlock() 调用（在f函数中）在第二次 l.Lock() 调用 （在main 函数中）返回之前发生，

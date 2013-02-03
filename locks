@@ -52,4 +52,5 @@ func main() {
 }
 可以确保输出“hello, world”结果。因为，
 第一次 l.Unlock() 调用（在f函数中）在第二次 l.Lock() 调用 （在main 函数中）返回之前发生，
-也就是在 print 函数调用之前发生 , ( 也就是 f() 执行完毕，a = "hello, world" 了 )
+也就是在 print 函数调用之前发生 , ( 调用 l.Unlock,了，说明 a = "hello, world",已经完成,这时候调用print(a),打印出来的一定是
+“hello, world” 了)

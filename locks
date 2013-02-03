@@ -1,4 +1,4 @@
-包sync实现了两种类型的锁： sync.Mutex （互拆锁） 和 sync.RWMutex。(读，写互拆锁)
+包sync实现了两种类型的锁： sync.Mutex （并行互拆锁） 和 sync.RWMutex。(读，写并行互拆锁)
 
 应用场景： 多个请求同时 请求 同一个资源
 

@@ -32,7 +32,7 @@ package main
 
 import (
   "fmt"
-	"sync"
+  "sync"
 )
 
 var l sync.Mutex

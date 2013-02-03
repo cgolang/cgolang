@@ -4,6 +4,12 @@
 
 以下例子：f(),与print(a),都要请求 变量 a ,同时请求！
 
+  package main
+  
+  import (
+  "fmt"
+  "sync"
+  )
 
   var l sync.Mutex
   var a string
@@ -22,22 +28,28 @@
 如果要确保 打印的一定是  "hello, world" 怎么办呢？ 方法之一 ： 锁！（别一种方法是 Channel）
 --------------------------------------------------------------------
 
-  var l sync.Mutex
-  var a string
-  
-  func f() {
-          a = "hello, world";
-          l.Unlock();
-  }
-  
-  func main() {
-          l.Lock(); //锁出现啦！亲，排队一个一个来
-          go f(); // 我获得锁啦！执行！ 给  a 赋值“hello , world ” 完成之后， 解锁。
+package main
 
-          l.Lock(); //锁又出现啦！亲，排队一个一个来 
-          print(a);//我第二个获得锁啦！ 我可以执行啦！ 打印 a !
- 
-  }
+import (
+  "fmt"
+	"sync"
+)
+
+var l sync.Mutex
+var a string
+
+func f() {
+        a = "hello, world";
+        l.Unlock();
+}
+
+func main() {
+       l.Lock();
+        go f(); // 我被上锁了！我排在第一，我先执行！ 给  a 赋值“hello , world ” 完成之后， 解锁。
+
+       l.Lock();
+        fmt.Println(a);//我也被上锁了，我排在第二 -_-| ，我只能等第一个解锁了，我才可以执行
+}
 可以确保输出“hello, world”结果。因为，
 第一次 l.Unlock() 调用（在f函数中）在第二次 l.Lock() 调用 （在main 函数中）返回之前发生，
 也就是在 print 函数调用之前发生。

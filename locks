@@ -1,4 +1,7 @@
-包sync实现了两种类型的锁： sync.Mutex （同步锁） 和 sync.RWMutex。(读，写互拆锁)
+包sync实现了两种类型的锁： sync.Mutex （互拆锁） 和 sync.RWMutex。(读，写互拆锁)
+
+Mutex 是同步基元，它只向一个线程授予对共享资源的独占访问权。
+如果一个线程获取了互斥体，则要获取该互斥体的第二个线程将被挂起，直到第一个线程释放该互斥体。
 
 对于任意 sync.Mutex 或 sync.RWMutex 变量l。 如果 n < m ，那么第n次 l.Unlock() 调用在第 m次 l.Lock() 调用返回前发生。
 

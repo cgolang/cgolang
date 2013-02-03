@@ -1,0 +1,31 @@
+type Handler interface { //Handler 接口
+  ServeHTTP(ResponseWriter, *Request)  // 具体的逻辑函数
+}
+
+
+type HandlerFunc  func(ResponseWrite ,*Requset)// 新创建一个类型 HandlerFunc ，它是函数类的类型
+
+func (f HandlerFunc) ServerHTTP(w ResponseWrite, r *Requset){ // HandlerFunc类型的方法
+  f(w, r)
+}
+
+
+func AdminHandler(w ResponseWriter, r *Request) {//自定义函数 AdminHandler 
+    ...
+}
+
+handler := HandlerFunc(abc); // 把AdminHandler 转为HandlerFunc 类型，可以调用 HandlerFunc 类型的方法，并且
+                             // 还实现了接Handler接口  
+
+handler.SererHTTP(w, r) //调用 SererHTTP()方法
+
+
+
+*****************
+HandlerFunc  handler 
+
+函数类型，一样有方法。
+函数类型，一样有方法，这个方法可以是接口中的方法。
+函数类型的 ，函数，可以实现接口！
+
+....，好绕哦，

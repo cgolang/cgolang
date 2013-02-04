@@ -1,0 +1,7 @@
+new 负责分配内存，make 负责初始化值
+
+new(T) 返回*T 指向一个零值 T 的指针
+
+make(T) 返回初始化后的 T ，而非指针
+
+最重要的一点：make 仅适用于slice，map 和channel

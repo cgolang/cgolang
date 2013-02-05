@@ -1,0 +1,7 @@
+RowsAffested其实就是一个int64的别名，但是他实现了Result接口，用来底层实现Result的表示方式
+
+type RowsAffected int64
+
+func (RowsAffected) LastInsertId() (int64, error) //接受一个 类型为 RowsAffected 的参数
+
+func (v RowsAffected) RowsAffected() (int64, error)

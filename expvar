@@ -1,0 +1,32 @@
+---------------------------------------------------------
+expvar:  expose variables  (显示变量)
+举例是运行godoc，然后 http://localhost:6060/debug/vars。
+---------------------------------------------------------
+
+
+
+
+以下代码用到Go1标准库fmt和expvar，仅两行代码，结果编译生成的EXE超大，达 3.2 MB。我的系统是 Windows 7, x86。
+按说，如果仅仅输出 fmt.Println("Hello world")，EXE应该在 1.1 MB 是比较正常的表现。
+
+编译方法：
+go build expvar.go
+
+--------------------------------------------------------
+package main
+
+import (
+  "fmt"
+	"expvar"
+)
+
+func main() {
+	fmt.Println("Hello, Go1. This is liigo.")
+	expvar.Do(func(kv expvar.KeyValue){ fmt.Printf("\n%s=%s\n",kv.Key,kv.Value) })
+}
+
+用了expvar，于是间接引用了超级多的包。
+$ go list -f {{.Deps}} expvar
+
+
+go  list -f {{.Deps | len}} net/http 可以看到实际是这个http很大，使用了56个导入，而expvar只多了两个。

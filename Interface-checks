@@ -1,0 +1,3 @@
+m, ok := val.(json.Marshaler) //断言val,是否实现Marshaler接口，如果实现，赋给m, m的类型为 json.Marshaler
+
+var _ json.Marshaler = (*MyMessage)(nil)//

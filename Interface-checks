@@ -3,7 +3,8 @@ m, ok := val.(json.Marshaler) //断言val,是否实现Marshaler接口，如果�
 var _ json.Marshaler = (*MyMessage)(nil)//将空对象nil 类型转化为 *MyMessage，然后 赋给 _ ,成功则 _ 等于
 
 
-
+var _, found = entries[name]  // map lookup; only interested in "found"
+x, _ = f()  // ignore second value returned by f()
 
 ----------------------------------------------
 

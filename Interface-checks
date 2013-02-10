@@ -1,6 +1,6 @@
-m, ok := val.(json.Marshaler) //断言val,是否实现Marshaler接口，如果实现，赋给m, m的类型为 json.Marshaler
+m, ok := val.(json.Marshaler) //断言val,是否实现Marshaler接口，如果实现，赋给m, m的类型为 json.Marshaler （这里是动态验证）
 
-var _ json.Marshaler = (*MyMessage)(nil)//将空对象nil 类型设为 *MyMessage，然后 赋给 _ ,成功则不产生panic,不成功则产生panic
+var _ json.Marshaler = (*MyMessage)(nil)//将空对象nil 类型设为 *MyMessage，然后 赋给 _ ,不成功则编译出错[这里是静态验证]
 //效果:如果 *MyMessage,实现了接口json.Marshaler,则不产生panic.常用来为某型类，做接口检查，看看某类型是否实现指点接口。
 
 var _, found = entries[name]  // map lookup; only interested in "found"

@@ -1,7 +1,7 @@
 m, ok := val.(json.Marshaler) //断言val,是否实现Marshaler接口，如果实现，赋给m, m的类型为 json.Marshaler
 
-var _ json.Marshaler = (*MyMessage)(nil)//将空对象nil 类型转化为 *MyMessage，然后 赋给 _ ,成功则 _ 等于
-
+var _ json.Marshaler = (*MyMessage)(nil)//将空对象nil 类型设为 *MyMessage，然后 赋给 _ ,成功则不产生panic,不成功则产生panic
+//效果:如果 *MyMessage,实现了接口json.Marshaler,再不产生panic.常用来为某型类，做接口检查，看看某类型是否实现指点接口。
 
 var _, found = entries[name]  // map lookup; only interested in "found"
 x, _ = f()  // ignore second value returned by f()
